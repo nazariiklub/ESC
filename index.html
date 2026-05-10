@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eurovision Scoreboard</title>
+
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- html2pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1 class="title" id="mainTitle">
+  <span>First</span> Semi-Final
+
+      <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('sf1')">Semi-Final 1</button>
+      <button class="tab-btn" onclick="switchTab('sf2')">Semi-Final 2</button>
+      <button class="tab-btn" onclick="switchTab('final')">Final</button>
+    </div>
+    
+
+</h1>
+
+<div class="app">
+
+  <!-- Кнопки керування (винесені) -->
+  <div class="controls">
+
+  </div>
+
+  <div id="scoreboard"></div>
+
+</div>
+
+    <div id="scoreboard"></div>
+
+    <button id="downloadBtn">Download PDF</button>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
