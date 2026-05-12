@@ -83,25 +83,19 @@ body {
   font-weight: 700;
   font-size: 16.5px;
   text-align: center;
+  align-items: center;
 }
 
 .header > div {
-  flex: 0 0 65px;           /* серце */
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
-.header > div:nth-child(2) {
-  flex: 1 1 420px;          /* Country & Song */
-  text-align: left;
-  padding-left: 20px;
-}
-
-.header > div:nth-child(3),
-.header > div:nth-child(4),
-.header > div:nth-child(5) {
-  flex: 0 0 155px;          /* Stage, Vocal, Total */
-  text-align: center;
-}
+.header > div:nth-child(1) { flex: 0 0 70px; }           /* Heart */
+.header > div:nth-child(2) { flex: 1 1 380px; text-align: left; padding-left: 15px; } /* Country & Song */
+.header > div:nth-child(3) { flex: 0 0 135px; }          /* Stage */
+.header > div:nth-child(4) { flex: 0 0 135px; }          /* Vocal */
+.header > div:nth-child(5) { flex: 0 0 145px; }          /* Song Impression */
+.header > div:nth-child(6) { flex: 0 0 130px; }          /* Total */
 
 /* РЯДКИ */
 .row {
@@ -116,9 +110,9 @@ body {
   border-bottom: none;
 }
 
-/* Ліва частина — серце + назва пісні */
+/* Ліва частина */
 .country-cell {
-  flex: 1 1 420px;
+  flex: 1 1 380px;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -132,7 +126,7 @@ body {
 .song {
   background: #ffffff;
   color: #3e0048;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -143,11 +137,16 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Інпути та Total */
-.stage, .vocal, .total {
-  flex: 0 0 155px;
+/* Інші колонки */
+.stage, .vocal, .impression, .total {
+  flex: 0 0 135px;
   text-align: center;
-  margin: 0 8px;
+  margin: 0 6px;
+}
+
+/* Song Impression */
+.impression {
+  flex: 0 0 145px;
 }
 
 /* Поля вводу */
@@ -155,13 +154,13 @@ body {
   background: #f8e8ff;
   border: none;
   border-radius: 12px;
-  padding: 11px 8px;
+  padding: 10px 8px;
   font-size: 18px;
   text-align: center;
   color: #3e0048;
   font-weight: 700;
   width: 100%;
-  max-width: 130px;
+  max-width: 120px;
   margin: 0 auto;
   display: block;
 }
@@ -170,11 +169,11 @@ body {
   background: #6b1e8c;
   color: white;
   border-radius: 12px;
-  padding: 11px 8px;
+  padding: 10px 8px;
   font-size: 19px;
   font-weight: bold;
   width: 100%;
-  max-width: 130px;
+  max-width: 120px;
   margin: 0 auto;
 }
 
@@ -189,6 +188,12 @@ body {
 .tabs {
   display: flex;
   gap: 12px;
+}
+
+.custom-heart {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
 .tab-btn {

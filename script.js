@@ -1,3 +1,6 @@
+let currentData = semiFinal1;
+let currentTitle = "First Semi-Final";
+
 function renderScoreboard(data, title = "First Semi-Final") {
   const board = document.getElementById("scoreboard");
   board.innerHTML = "";
@@ -6,10 +9,8 @@ function renderScoreboard(data, title = "First Semi-Final") {
     <h1 class="title"><span class="first">First</span> Semi-Final</h1>
     
     <div class="name-box">
-
       <input type="text" id="userName" placeholder="Введіть ваше ім'я" />
     </div>
-
 
     <div class="table">
       <div class="header">
@@ -17,23 +18,28 @@ function renderScoreboard(data, title = "First Semi-Final") {
         <div>Country & Song</div>
         <div>Stage 0/12</div>
         <div>Vocal 0/12</div>
+        <div>Song Impression 0/12</div>
         <div>Total 0/12</div>
       </div>
-
   `;
 
   data.forEach(item => {
     html += `
       <div class="row">
+        <div class="heart-cell">
+          <img src="${item.heartImage}" class="custom-heart" alt="Heart">
+        </div>
         <div class="country-cell">
-          <span class="heart">❤️</span>
           <span class="song">${item.song}</span>
         </div>
         <div class="stage">
-          <input type="number" class="score-input" min="0" max="12" />
+          <input type="number" class="score-input stage" min="0" max="12" />
         </div>
         <div class="vocal">
-          <input type="number" class="score-input" min="0" max="12" />
+          <input type="number" class="score-input vocal" min="0" max="12" />
+        </div>
+        <div class="impression">
+          <input type="number" class="score-input impression" min="0" max="12" />
         </div>
         <div class="total">0</div>
       </div>
@@ -46,56 +52,68 @@ function renderScoreboard(data, title = "First Semi-Final") {
   addListeners();
 }
 
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+  if (tab === 'sf1') {
+    renderScoreboard(semiFinal1, "First Semi-Final");
+    document.querySelector('[onclick="switchTab(\'sf1\')"]').classList.add('active');
+  } else if (tab === 'sf2') {
+    renderScoreboard(semiFinal2, "Second Semi-Final");
+    document.querySelector('[onclick="switchTab(\'sf2\')"]').classList.add('active');
+  } else if (tab === 'final') {
+    // Поки що заглушка
+    alert("Final ще не готовий");
+  }
+}
+
+// Запуск
+document.addEventListener('DOMContentLoaded', () => {
+  renderScoreboard(semiFinal1, "First Semi-Final");
+});
+
 function addListeners() {
   const rows = document.querySelectorAll('.row');
   
   rows.forEach(row => {
     const stageInput = row.querySelector('.stage input');
     const vocalInput = row.querySelector('.vocal input');
+    const impressionInput = row.querySelector('.impression input');
     const totalCell = row.querySelector('.total');
 
     function validateAndUpdate() {
       let stage = parseInt(stageInput.value) || 0;
       let vocal = parseInt(vocalInput.value) || 0;
+      let impression = parseInt(impressionInput.value) || 0;
 
-      // Жорстке обмеження 0-12
-      if (stage > 12) {
-        stage = 12;
-        stageInput.value = 12;
-      }
-      if (stage < 0) {
-        stage = 0;
-        stageInput.value = 0;
-      }
-      if (vocal > 12) {
-        vocal = 12;
-        vocalInput.value = 12;
-      }
-      if (vocal < 0) {
-        vocal = 0;
-        vocalInput.value = 0;
-      }
+      // Обмеження 0-12
+      if (stage > 12) { stage = 12; stageInput.value = 12; }
+      if (stage < 0) { stage = 0; stageInput.value = 0; }
+      if (vocal > 12) { vocal = 12; vocalInput.value = 12; }
+      if (vocal < 0) { vocal = 0; vocalInput.value = 0; }
+      if (impression > 12) { impression = 12; impressionInput.value = 12; }
+      if (impression < 0) { impression = 0; impressionInput.value = 0; }
 
-      // Підрахунок Total
-      totalCell.textContent = stage + vocal;
+      // Total = Stage + Vocal + Impression
+      totalCell.textContent = stage + vocal + impression;
     }
 
-    // Слухаємо зміни
     stageInput.addEventListener('input', validateAndUpdate);
     vocalInput.addEventListener('input', validateAndUpdate);
+    impressionInput.addEventListener('input', validateAndUpdate);
+
     stageInput.addEventListener('change', validateAndUpdate);
     vocalInput.addEventListener('change', validateAndUpdate);
+    impressionInput.addEventListener('change', validateAndUpdate);
 
-    // Заборона вводити не цифри
-    stageInput.addEventListener('keypress', (e) => {
-      if (!/[0-9]/.test(e.key)) e.preventDefault();
-    });
-    vocalInput.addEventListener('keypress', (e) => {
-      if (!/[0-9]/.test(e.key)) e.preventDefault();
+    // Заборона нецифрових символів
+    [stageInput, vocalInput, impressionInput].forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (!/[0-9]/.test(e.key)) e.preventDefault();
+      });
     });
   });
 }
-
 // Запуск
 document.addEventListener('DOMContentLoaded', () => {
   renderScoreboard(semiFinal1, "First Semi-Final");
