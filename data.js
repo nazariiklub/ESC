@@ -267,7 +267,7 @@ const grandFinal = [
     country: "GB",
     song: "Eins, Zwei, Drei",
     flag: "🇩🇪",
-    heartImage: "assets/.png"
+    heartImage: "assets/GBR.png"
   },
   {
     country: "France",
@@ -294,10 +294,10 @@ const grandFinal = [
     heartImage: "assets/POL.png"
   },
   {
-    country: "Spain",
+    country: "Lithuania",
     song: "Sólo Quiero Más",
     flag: "🇪🇸",
-    heartImage: "assets/ESP.png"
+    heartImage: "assets/LTU.png"
   },
   {
     country: "Sweden",
