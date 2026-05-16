@@ -57,14 +57,15 @@ function switchTab(tab) {
 
   if (tab === 'sf1') {
     renderScoreboard(semiFinal1, "First Semi-Final");
-    document.querySelector('[onclick="switchTab(\'sf1\')"]').classList.add('active');
   } else if (tab === 'sf2') {
     renderScoreboard(semiFinal2, "Second Semi-Final");
-    document.querySelector('[onclick="switchTab(\'sf2\')"]').classList.add('active');
   } else if (tab === 'final') {
-    // Поки що заглушка
-    alert("Final ще не готовий");
+    renderScoreboard(grandFinal, "Grand Final");
   }
+
+  // Активна кнопка
+  const activeBtn = document.querySelector(`button[onclick="switchTab('${tab}')"]`);
+  if (activeBtn) activeBtn.classList.add('active');
 }
 
 // Запуск
